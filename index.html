@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section id="cart-area">
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div id="cartItem1" class="cart-item">
+                  <div class="row">
+                     <div id="checkout-success" class="col-md-12 text-center ">
+                        <h2><strong>Thanks for Choosing Our Product.</strong></h2>
+                        <h4>We will contact you soon!</h4>
+                     </div>
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="dencrement1" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="itemquantity1" type="text" class="form-control text-center" value="1">
+                           <button onclick="" id="Increment1" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$ <span id="item1">500</span></h5>
+                        <img id="icon1" src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div id="cartItem2" class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button id="decrement2" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="itemquantity2" type="text" class="form-control text-center" value="1">
+                           <button id="increment2" class="btn btn-default"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$ <span id="item2">50</span></h5>
+                        <img id="icon2" src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$ <span id="subtotal">550</span></h5>
+                        <h5>$ <span id="tax">82.5</span></h5>
+                        <h5>$ <span id="total">632.5</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button id="checkout" type="button" class="btn btn-success check-out">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- <script src="script.js"></script> -->
+   <script>
+      //increment process
+       const plusbtn = document.getElementById('Increment1')
+       plusbtn.addEventListener("click", function(){
+
+         inceseAndDecreseValue("itemquantity1", +1);
+         Pricing("item1",500)
+         totalAmount("subtotal",500)
+       
+       });
+
+     //sub total amount
+      function totalAmount(id,price){
+         const totalnumberPrice= document.getElementById(id).innerText;
+         const incermentPrice = parseFloat(totalnumberPrice)
+         
+         const totalPhonePrice = incermentPrice + price;
+         document.getElementById(id).innerText=totalPhonePrice;
+
+
+          const texAmount=  document.getElementById("tax").innerText;
+          const totalTex =parseFloat(texAmount);
+          const totalTexPrice= totalPhonePrice *.15 ;
+          
+          document.getElementById("tax").innerText=totalTexPrice;
+
+          const subtotal=totalPhonePrice+totalTexPrice
+           document.getElementById("total").innerText=subtotal;
+        
+         
+       }
+     // increment functionality
+       function inceseAndDecreseValue(id, value){
+         const plusIncrease = document.getElementById(id).value;
+          const plusNumber = parseFloat(plusIncrease);
+          const total = plusNumber + value ;
+          document.getElementById(id).value =total;
+       }    
+
+       //i phone price
+       function Pricing(id ,price){
+         const increasePrice = document.getElementById(id).innerText;
+          const increaseNUmber = parseFloat(increasePrice) 
+          const totalPrice= increaseNUmber + price;
+
+          
+         document.getElementById(id).innerText=totalPrice
+           
+       }
+
+       //decrement process 
+       const minusBtn = document.getElementById('dencrement1')
+       minusBtn.addEventListener("click", function(){
+         inceseAndDecreseValue("itemquantity1",-1)
+         Pricing("item1",-500)
+         totalAmount("subtotal",-500)
+
+          
+       })
+
+     
+       // for iphone cover increment
+       const plusbtn2 = document.getElementById('increment2')
+       plusbtn2.addEventListener("click", function(){
+         inceseAndDecreseValue("itemquantity2",+1)
+         Pricing("item2",50)
+         totalAmount("subtotal",50)
+
+       })
+
+          // for iphone cover dencrement
+
+       const minusBtn2 = document.getElementById('decrement2')
+       minusBtn2.addEventListener("click", function(){
+         inceseAndDecreseValue("itemquantity2",-1)
+         Pricing("item2",-50)
+         totalAmount("subtotal",-50)
+
+       })
+
+
+
+       
+   </script>
+</body>
+
+</html>
